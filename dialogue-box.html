@@ -1,0 +1,188 @@
+<html>
+<head>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<style>
+body {
+	width 100%;
+	height: 100%;
+}
+.transparent-background {
+	background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+	background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+	background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+	background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.dialogue-box {
+	background: #EAEEF1;
+	background-image: -webkit-linear-gradient(#F1F4F6, #EAEEF1);
+	background-image: -moz-linear-gradient(#F1F4F6, #EAEEF1);
+	background-image: -ms-linear-gradient(#F1F4F6, #EAEEF1);
+	background-image: linear-gradient(#F1F4F6, #EAEEF1);
+	-moz-box-shadow: 0 0 1px 1px rgba(0,0,0,0.4), 0 10px 27px rgba(0,0,0,0.7);
+	-webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4), 0 10px 27px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.4), 0 10px 27px rgba(0, 0, 0, 0.7);
+	overflow: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-touch-callout: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 340px;
+	height: 360px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -180px;
+	margin-left: -170px;
+	-webkit-animation-duration: 100ms;
+	-webkit-animation-timing-function: ease;
+	-webkit-animation-name: hidePanel;
+}
+
+.active {
+	background:white;
+  -webkit-animation-duration: 400ms;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-name: showPanel;
+}
+@-moz-keyframes showPanel {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.95) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes showPanel {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.80) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+@-o-keyframes showPanel {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.8) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+@-ms-keyframes showPanel {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.8) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+@keyframes showPanel {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(0.8) translate3d(0, 100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+}
+@-moz-keyframes hidePanel {
+  0% {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+@-webkit-keyframes hidePanel {
+  0% {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+@-o-keyframes hidePanel {
+  0% {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+@-ms-keyframes hidePanel {
+  0% {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+@keyframes hidePanel {
+  0% {
+    -webkit-transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  100% {
+    -webkit-transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+.x-button {
+	float: right;
+	color: black;
+	cursor: default;
+	margin-right: 5px;
+}
+.x-button:hover {
+	color: red;
+}
+</style>
+<body>
+<button type="button" class="dialogue-button">open dialogue</button>
+<div class="transparent-background">
+	<div class="dialogue-box">
+		<span class="x-button">&#10006;</span>
+	</div>
+</div>
+</body>
+
+<script>
+
+$(document).ready(function() {
+	$(".dialogue-button").click(function(){
+		$(".transparent-background").show();
+		$(".dialogue-box").addClass("active");		
+	});
+	$(".x-button").click(function(){
+		$(".transparent-background").fadeOut();
+	});
+});
+
+
+</script>
+
+<html>
